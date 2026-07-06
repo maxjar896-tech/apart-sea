@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Локация — инфраструктура Владивостока | Apart Sea</title>
+    <meta name="description" content="Расположение апартаментов Apart Sea на ул. Сочинской во Владивостоке: рестораны, магазины, набережные — всё в пешей доступности.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&family=DM+Serif+Display&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        cream: '#F9F6F0', sand: '#EDE8DF', anthracite: '#2C3E50',
+                        ocean: '#1A365D', 'ocean-light': '#2A4A7F', 'ocean-soft': '#E8EDF4', warm: '#8B7355',
+                    },
+                    fontFamily: { sans: ['Montserrat', 'sans-serif'], serif: ['DM Serif Display', 'serif'] },
+                }
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin="">
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
+    <style>
+        .leaflet-popup-content-wrapper { border-radius: 16px; padding: 0; overflow: hidden; box-shadow: 0 12px 40px rgba(0,0,0,0.15); }
+        .leaflet-popup-content { margin: 0; min-width: 220px; }
+        .popup-card { padding: 16px 18px; }
+        .popup-card h4 { font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 14px; color: #1A365D; margin: 0 0 4px; }
+        .popup-card p { font-family: 'Montserrat', sans-serif; font-size: 12px; color: #666; margin: 0 0 10px; line-height: 1.5; }
+        .popup-card .popup-links { display: flex; gap: 8px; }
+        .popup-card .popup-links a { display: inline-flex; align-items: center; gap: 4px; padding: 6px 12px; border-radius: 8px; font-family: 'Montserrat', sans-serif; font-size: 11px; font-weight: 600; text-decoration: none; transition: all 0.3s; }
+        .popup-link-2gis { background: #25D366; color: white; }
+        .popup-link-2gis:hover { background: #20BD5A; }
+        .popup-link-phone { background: #1A365D; color: white; }
+        .popup-link-phone:hover { background: #2A4A7F; }
+        .popup-badge { display: inline-block; padding: 3px 8px; border-radius: 6px; font-size: 10px; font-weight: 600; font-family: 'Montserrat', sans-serif; margin-bottom: 8px; }
+        .badge-food { background: #FEF3C7; color: #92400E; }
+        .badge-shop { background: #D1FAE5; color: #065F46; }
+        .badge-nature { background: #DBEAFE; color: #1E40AF; }
+        .badge-sight { background: #EDE9FE; color: #5B21B6; }
+        .badge-home { background: #FCE7F3; color: #9D174D; }
+    </style>
+</head>
+<body class="bg-cream text-anthracite font-sans antialiased overflow-x-hidden">
+
+    <!-- Навигация -->
+    <nav id="navbar" class="nav-inner fixed top-0 left-0 right-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-18 md:h-24">
+                <a href="index.html" class="flex items-center gap-3 group">
+                    <div class="w-10 h-10 md:w-11 md:h-11 rounded-xl overflow-hidden">
+                        <img src="img/logo-apart-sea.jpg" alt="Apart Sea" class="w-full h-full object-cover rounded-xl">
+                    </div>
+                    <div class="flex flex-col">
+                        <span class="font-sans text-sm md:text-base font-bold tracking-[0.2em] uppercase text-ocean nav-logo-text leading-none">Apart Sea</span>
+                        <span class="text-[9px] md:text-[10px] tracking-[0.3em] uppercase text-anthracite/40 font-medium mt-0.5">Vladivostok</span>
+                    </div>
+                </a>
+                <div class="hidden md:flex items-center gap-10">
+                    <a href="index.html" class="nav-link">Главная</a>
+                    <a href="apartment.html" class="nav-link">Квартира</a>
+                    <a href="location.html" class="nav-link active">Локация</a>
+                    <a href="rules.html" class="nav-link">Правила</a>
+                    <a href="contact.html" class="nav-link">Контакты</a>
+                    <a href="contact.html" class="hidden lg:inline-flex btn-book items-center gap-2 bg-ocean text-white px-6 py-2.5 rounded-xl text-xs font-semibold tracking-wider uppercase hover:bg-ocean-light transition-all duration-500">Забронировать</a>
+                </div>
+                <button id="menu-toggle" class="md:hidden p-2 rounded-lg" aria-label="Меню">
+                    <svg class="w-6 h-6 text-anthracite" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path id="menu-icon" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 6h16M4 12h16M4 18h16"/></svg>
+                </button>
+            </div>
+        </div>
+        <div id="mobile-menu" class="md:hidden hidden bg-cream/98 backdrop-blur-2xl border-t border-sand/50">
+            <div class="px-4 py-5 space-y-1">
+                <a href="index.html" class="block px-4 py-3.5 rounded-xl text-xs font-semibold tracking-wider uppercase text-anthracite hover:bg-sand/50 transition-colors">Главная</a>
+                <a href="apartment.html" class="block px-4 py-3.5 rounded-xl text-xs font-semibold tracking-wider uppercase text-anthracite hover:bg-sand/50 transition-colors">Квартира</a>
+                <a href="location.html" class="block px-4 py-3.5 rounded-xl text-xs font-semibold tracking-wider uppercase bg-ocean text-white">Локация</a>
+                <a href="rules.html" class="block px-4 py-3.5 rounded-xl text-xs font-semibold tracking-wider uppercase text-anthracite hover:bg-sand/50 transition-colors">Правила</a>
+                <a href="contact.html" class="block px-4 py-3.5 rounded-xl text-xs font-semibold tracking-wider uppercase text-anthracite hover:bg-sand/50 transition-colors">Контакты</a>
+                <a href="contact.html" class="block px-4 py-3.5 rounded-xl text-xs font-bold tracking-wider uppercase bg-ocean text-white text-center mt-3">Забронировать</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Заголовок -->
+    <section class="page-hero bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <p class="text-ocean text-xs font-bold tracking-[0.3em] uppercase mb-4 animate-fadeInUp">Владивосток</p>
+            <h1 class="font-serif text-4xl md:text-5xl lg:text-6xl mb-5 animate-fadeInUp animation-delay-100">Локация и&nbsp;инфраструктура</h1>
+            <p class="text-anthracite/55 text-base md:text-lg max-w-2xl mx-auto font-light animate-fadeInUp animation-delay-200">ул.&nbsp;Сочинская,&nbsp;д.&nbsp;10 — развитый район с&nbsp;видом на&nbsp;зелёную сопку. Всё лучшее Владивостока — в&nbsp;пешей доступности</p>
+            <div class="separator-line mx-auto mt-6 animate-fadeInUp animation-delay-300"></div>
+        </div>
+    </section>
+
+    <!-- Морская тема -->
+    <section class="py-16 md:py-24 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <div>
+                    <div class="inline-flex items-center gap-2 bg-ocean-soft px-4 py-2 rounded-full text-sm font-medium text-ocean mb-6">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 3v2.25m6.364.386l-1.591 1.591M21 12h-2.25m-.386 6.364l-1.591-1.591M12 18.75V21m-4.773-4.227l-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z"/></svg>
+                        Город у океана
+                    </div>
+                    <h2 class="font-serif text-3xl md:text-4xl font-semibold mb-6">Владивосток — столица Тихого океана</h2>
+                    <p class="text-anthracite/70 leading-relaxed mb-6">
+                        Апартаменты на&nbsp;ул.&nbsp;Сочинской,&nbsp;д.&nbsp;10 расположены в&nbsp;развитом районе Владивостока. 7&nbsp;этаж с&nbsp;видом на&nbsp;живописную зелёную сопку. Развитая инфраструктура, удобный транспорт и&nbsp;все достопримечательности города — в&nbsp;досягаемости.
+                    </p>
+                    <div class="space-y-4">
+                        <div class="flex items-start gap-4">
+                            <div class="w-10 h-10 rounded-lg bg-ocean/10 flex items-center justify-center flex-shrink-0 mt-0.5">
+                                <svg class="w-5 h-5 text-ocean" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                            </div>
+                            <div>
+                                <p class="font-semibold text-sm">Вид на&nbsp;зелёную сопку с&nbsp;7&nbsp;этажа</p>
+                                <p class="text-anthracite/60 text-sm">Из&nbsp;окон — живописный вид на&nbsp;сопку в&nbsp;зелени и&nbsp;развивающийся район города</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-4">
+                            <div class="w-10 h-10 rounded-lg bg-ocean/10 flex items-center justify-center flex-shrink-0 mt-0.5">
+                                <svg class="w-5 h-5 text-ocean" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M2.25 15a4.5 4.5 0 004.5 4.5H18a3.75 3.75 0 001.332-7.257 3 3 0 00-3.758-3.848 5.25 5.25 0 00-10.233 2.33A4.502 4.502 0 002.25 15z"/></svg>
+                            </div>
+                            <div>
+                                <p class="font-semibold text-sm">Набережные Владивостока — на&nbsp;машине или транспорте</p>
+                                <p class="text-anthracite/60 text-sm">Набережная Цесаревича, Спортивная набережная и&nbsp;набережная Корабельной набережной — легко добраться</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-4">
+                            <div class="w-10 h-10 rounded-lg bg-ocean/10 flex items-center justify-center flex-shrink-0 mt-0.5">
+                                <svg class="w-5 h-5 text-ocean" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M6.115 5.19l.319 1.913A6 6 0 008.11 10.36L9.75 12l-.387.775c-.217.433-.132.956.21 1.298l1.348 1.348c.21.21.329.497.329.795v1.089c0 .426.24.815.622 1.006l.153.076c.433.217.956.132 1.298-.21l.723-.723a8.7 8.7 0 002.288-4.042 1.087 1.087 0 00-.358-1.099l-1.33-1.108c-.251-.21-.582-.299-.905-.245l-1.17.195a1.125 1.125 0 01-.98-.314l-.295-.295a1.125 1.125 0 010-1.591l.13-.132a1.125 1.125 0 011.3-.21l.603.302a.809.809 0 001.086-1.086L14.25 7.5l1.256-.837a4.5 4.5 0 001.528-1.732l.146-.292M6.115 5.19A9 9 0 1017.18 4.64M6.115 5.19A8.965 8.965 0 0112 3c1.929 0 3.716.607 5.18 1.64"/></svg>
+                            </div>
+                            <div>
+                                <p class="font-semibold text-sm">Видовая площадка «Орлиное гнездо»</p>
+                                <p class="text-anthracite/60 text-sm">Панорама всего Владивостока: бухта, мосты, порт и&nbsp;бесконечный горизонт Тихого океана</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Морская декоративная карточка -->
+                <div class="relative">
+                    <div class="bg-ocean rounded-3xl p-8 md:p-12 text-white relative overflow-hidden">
+                        <div class="absolute inset-0 opacity-10">
+                            <svg class="w-full h-full" viewBox="0 0 400 400" fill="none"><path d="M0 250Q100 200 200 250T400 250V400H0Z" fill="white"/><path d="M0 280Q100 230 200 280T400 280V400H0Z" fill="white" opacity="0.5"/><path d="M0 310Q100 260 200 310T400 310V400H0Z" fill="white" opacity="0.3"/></svg>
+                        </div>
+                        <div class="relative z-10">
+                            <svg class="w-16 h-16 mb-6 opacity-80" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M12 3v2.25m6.364.386l-1.591 1.591M21 12h-2.25m-.386 6.364l-1.591-1.591M12 18.75V21m-4.773-4.227l-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z"/></svg>
+                            <h3 class="font-serif text-2xl md:text-3xl font-semibold mb-4">Просыпайтесь с&nbsp;видом на&nbsp;зелёную сопку</h3>
+                            <p class="text-white/70 leading-relaxed mb-6">7&nbsp;этаж, вид на&nbsp;живописную сопку в&nbsp;зелени. Владивосток — один из&nbsp;самых красивых городов России. Сопки, бухты, мосты и&nbsp;океанский бриз создают неповторимую атмосферу.</p>
+                            <div class="flex items-center gap-6 text-sm">
+                                <div>
+                                    <p class="text-3xl font-bold">7</p>
+                                    <p class="text-white/50">этаж</p>
+                                </div>
+                                <div class="w-px h-12 bg-white/20"></div>
+                                <div>
+                                    <p class="text-3xl font-bold">3</p>
+                                    <p class="text-white/50">мин до магазина</p>
+                                </div>
+                                <div class="w-px h-12 bg-white/20"></div>
+                                <div>
+                                    <p class="text-3xl font-bold">24/7</p>
+                                    <p class="text-white/50">аптека рядом</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Инфраструктура -->
+    <section class="py-16 md:py-24">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-14">
+                <p class="text-ocean text-sm font-semibold tracking-widest uppercase mb-3">Всё рядом</p>
+                <h2 class="font-serif text-3xl md:text-4xl font-semibold">Инфраструктура района</h2>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
+                <!-- Кофейня в доме -->
+                <div class="bg-white rounded-2xl p-6 md:p-8 hover:shadow-lg transition-shadow duration-300">
+                    <div class="w-12 h-12 rounded-xl bg-amber-50 flex items-center justify-center mb-4">
+                        <svg class="w-6 h-6 text-amber-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 8.25v-1.5m0 1.5c-1.355 0-2.697.056-4.024.166C6.845 8.51 6 9.473 6 10.608v2.513m6-4.871c1.355 0 2.697.056 4.024.166C17.155 8.51 18 9.473 18 10.608v2.513M15 8.25v-1.5m-6 1.5v-1.5m12 9.75l-1.5.75a3.354 3.354 0 01-3 0 3.354 3.354 0 00-3 0 3.354 3.354 0 01-3 0 3.354 3.354 0 00-3 0 3.354 3.354 0 01-3 0L3 16.5m15-3.379a48.474 48.474 0 00-6-.371c-2.032 0-4.034.126-6 .371m12 0c.39.049.777.102 1.163.16 1.07.16 1.837 1.094 1.837 2.175v5.169c0 .621-.504 1.125-1.125 1.125H4.125A1.125 1.125 0 013 20.625v-5.17c0-1.08.768-2.014 1.837-2.174A47.78 47.78 0 016 13.12"/></svg>
+                    </div>
+                    <h3 class="font-semibold text-lg mb-2">Кофейня в&nbsp;доме</h3>
+                    <p class="text-anthracite/60 text-sm leading-relaxed">Прямо на&nbsp;первом этаже вашего дома — уютная кофейня со&nbsp;свежей выпечкой и&nbsp;ароматным кофе. Завтрак не&nbsp;выходя из&nbsp;подъезда!</p>
+                </div>
+
+                <!-- Кафе и рестораны -->
+                <div class="bg-white rounded-2xl p-6 md:p-8 hover:shadow-lg transition-shadow duration-300">
+                    <div class="w-12 h-12 rounded-xl bg-amber-50 flex items-center justify-center mb-4">
+                        <svg class="w-6 h-6 text-amber-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 8.25v-1.5m0 1.5c-1.355 0-2.697.056-4.024.166C6.845 8.51 6 9.473 6 10.608v2.513m6-4.871c1.355 0 2.697.056 4.024.166C17.155 8.51 18 9.473 18 10.608v2.513M15 8.25v-1.5m-6 1.5v-1.5m12 9.75l-1.5.75a3.354 3.354 0 01-3 0 3.354 3.354 0 00-3 0 3.354 3.354 0 01-3 0 3.354 3.354 0 00-3 0 3.354 3.354 0 01-3 0L3 16.5m15-3.379a48.474 48.474 0 00-6-.371c-2.032 0-4.034.126-6 .371m12 0c.39.049.777.102 1.163.16 1.07.16 1.837 1.094 1.837 2.175v5.169c0 .621-.504 1.125-1.125 1.125H4.125A1.125 1.125 0 013 20.625v-5.17c0-1.08.768-2.014 1.837-2.174A47.78 47.78 0 016 13.12"/></svg>
+                    </div>
+                    <h3 class="font-semibold text-lg mb-2">Regazza, Gusto и&nbsp;другие</h3>
+                    <p class="text-anthracite/60 text-sm leading-relaxed">Пиццерия Regazza и&nbsp;кафе Gusto — в&nbsp;5&nbsp;минутах пешком. Итальянская пицца, европейская кухня, уютные завтраки и&nbsp;бизнес-ланчи</p>
+                </div>
+
+                <!-- ТК Патрокл -->
+                <div class="bg-white rounded-2xl p-6 md:p-8 hover:shadow-lg transition-shadow duration-300">
+                    <div class="w-12 h-12 rounded-xl bg-green-50 flex items-center justify-center mb-4">
+                        <svg class="w-6 h-6 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 00-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 00-16.536-1.84M7.5 14.25L5.106 5.272M6 20.25a.75.75 0 11-1.5 0 .75.75 0 011.5 0zm12.75 0a.75.75 0 11-1.5 0 .75.75 0 011.5 0z"/></svg>
+                    </div>
+                    <h3 class="font-semibold text-lg mb-2">ТК «Патрокл»</h3>
+                    <p class="text-anthracite/60 text-sm leading-relaxed">Торговый комплекс в&nbsp;пешей доступности: супермаркет, аптека 24/7, банкоматы, магазины одежды. Всё необходимое — рядом с&nbsp;домом</p>
+                </div>
+
+                <!-- Парк у озера -->
+                <div class="bg-white rounded-2xl p-6 md:p-8 hover:shadow-lg transition-shadow duration-300">
+                    <div class="w-12 h-12 rounded-xl bg-blue-50 flex items-center justify-center mb-4">
+                        <svg class="w-6 h-6 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 3v2.25m6.364.386l-1.591 1.591M21 12h-2.25m-.386 6.364l-1.591-1.591M12 18.75V21m-4.773-4.227l-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z"/></svg>
+                    </div>
+                    <h3 class="font-semibold text-lg mb-2">Парк у&nbsp;озера</h3>
+                    <p class="text-anthracite/60 text-sm leading-relaxed">Зелёный парк с&nbsp;озером для утренних пробежек, прогулок и&nbsp;отдыха на&nbsp;свежем воздухе. Идеальное место для разминки после дороги</p>
+                </div>
+
+                <!-- Транспорт -->
+                <div class="bg-white rounded-2xl p-6 md:p-8 hover:shadow-lg transition-shadow duration-300">
+                    <div class="w-12 h-12 rounded-xl bg-purple-50 flex items-center justify-center mb-4">
+                        <svg class="w-6 h-6 text-purple-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M8.25 18.75a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h6m-9 0H3.375a1.125 1.125 0 01-1.125-1.125V14.25m17.25 4.5a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h1.125c.621 0 1.129-.504 1.09-1.124a17.902 17.902 0 00-3.213-9.193 2.056 2.056 0 00-1.58-.86H14.25M16.5 18.75h-2.25m0-11.177v-.958c0-.568-.422-1.048-.987-1.106a48.554 48.554 0 00-10.026 0 1.106 1.106 0 00-.987 1.106v7.635m12-6.677v6.677m0 4.5v-4.5m0 0h-12"/></svg>
+                    </div>
+                    <h3 class="font-semibold text-lg mb-2">Транспорт</h3>
+                    <p class="text-anthracite/60 text-sm leading-relaxed">Остановка общественного транспорта — 2&nbsp;минуты. Аэропорт Кневичи — 50&nbsp;минут на&nbsp;такси или аэроэкспрессе. Удобный выезд на&nbsp;основные магистрали города</p>
+                </div>
+
+                <!-- Достопримечательности -->
+                <div class="bg-white rounded-2xl p-6 md:p-8 hover:shadow-lg transition-shadow duration-300">
+                    <div class="w-12 h-12 rounded-xl bg-ocean-soft flex items-center justify-center mb-4">
+                        <svg class="w-6 h-6 text-ocean" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M6.827 6.175A2.31 2.31 0 015.186 7.23c-.38.054-.757.112-1.134.175C2.999 7.58 2.25 8.507 2.25 9.574V18a2.25 2.25 0 002.25 2.25h15A2.25 2.25 0 0021.75 18V9.574c0-1.067-.75-1.994-1.802-2.169a47.865 47.865 0 00-1.134-.175 2.31 2.31 0 01-1.64-1.055l-.822-1.316a2.192 2.192 0 00-1.736-1.039 48.774 48.774 0 00-5.232 0 2.192 2.192 0 00-1.736 1.039l-.821 1.316z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M16.5 12.75a4.5 4.5 0 11-9 0 4.5 4.5 0 019 0zM18.75 10.5h.008v.008h-.008V10.5z"/></svg>
+                    </div>
+                    <h3 class="font-semibold text-lg mb-2">Достопримечательности</h3>
+                    <p class="text-anthracite/60 text-sm leading-relaxed">Приморский океанариум, Русский мост, Токаревский маяк, фуникулёр, Ботанический сад — весь Владивосток как на&nbsp;ладони</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Интерактивная карта -->
+    <section class="py-16 md:py-24 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-10">
+                <p class="text-ocean text-sm font-semibold tracking-widest uppercase mb-3">На карте</p>
+                <h2 class="font-serif text-3xl md:text-4xl font-semibold">Расположение и&nbsp;интересные места</h2>
+                <p class="text-anthracite/55 text-base mt-3 max-w-xl mx-auto font-light">Нажмите на&nbsp;маркер, чтобы узнать подробности и&nbsp;открыть маршрут в&nbsp;2ГИС</p>
+            </div>
+
+            <div id="map" class="rounded-3xl overflow-hidden shadow-lg" style="height: 520px; z-index: 0;"></div>
+
+            <div class="flex flex-wrap gap-3 justify-center mt-6 text-xs font-semibold">
+                <span class="flex items-center gap-1.5"><span class="w-3 h-3 rounded-full bg-red-500"></span> Апартаменты</span>
+                <span class="flex items-center gap-1.5"><span class="w-3 h-3 rounded-full bg-amber-500"></span> Кафе и рестораны</span>
+                <span class="flex items-center gap-1.5"><span class="w-3 h-3 rounded-full bg-green-500"></span> Магазины</span>
+                <span class="flex items-center gap-1.5"><span class="w-3 h-3 rounded-full bg-blue-500"></span> Природа и пляжи</span>
+                <span class="flex items-center gap-1.5"><span class="w-3 h-3 rounded-full bg-purple-500"></span> Достопримечательности</span>
+            </div>
+        </div>
+    </section>
+
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        var map = L.map('map', { scrollWheelZoom: false }).setView([43.0700, 131.9300], 11);
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; OpenStreetMap',
+            maxZoom: 18
+        }).addTo(map);
+
+        function icon(color) {
+            return L.divIcon({
+                className: '',
+                html: '<div style="background:' + color + ';width:28px;height:28px;border-radius:50%;border:3px solid white;box-shadow:0 3px 10px rgba(0,0,0,0.3);"></div>',
+                iconSize: [28, 28],
+                iconAnchor: [14, 14],
+                popupAnchor: [0, -16]
+            });
+        }
+
+        var places = [
+            {
+                lat: 43.0790, lng: 131.9600, color: '#EF4444', badge: 'badge-home', badgeText: 'Ваши апартаменты',
+                title: 'Apart Sea', desc: 'ул. Сочинская, 10, 7 этаж, ЖК «Новые горизонты»',
+                gis: 'https://2gis.ru/vladivostok/search/ул.%20Сочинская%2010', phone: '+7-914-321-45-07'
+            },
+            {
+                lat: 43.0792, lng: 131.9598, color: '#F59E0B', badge: 'badge-food', badgeText: 'Кафе',
+                title: 'Кофейня в доме', desc: 'Уютная кофейня на первом этаже вашего дома. Свежая выпечка и ароматный кофе каждое утро',
+                gis: 'https://2gis.ru/vladivostok/search/кофейня%20сочинская%2010'
+            },
+            {
+                lat: 43.082189, lng: 131.957264, color: '#F59E0B', badge: 'badge-food', badgeText: 'Пиццерия',
+                title: 'Pizza Ragazzi', desc: 'Итальянская пиццерия на Сочинской, 9 — в соседнем доме. 2 минуты пешком',
+                gis: 'https://2gis.ru/vladivostok/search/regazza'
+            },
+            {
+                lat: 43.116463, lng: 131.881282, color: '#F59E0B', badge: 'badge-food', badgeText: 'Кафе',
+                title: 'Gusto Bakery', desc: 'Кофейня-кондитерская на Светланской, 16 — в центре города',
+                gis: 'https://2gis.ru/vladivostok/search/gusto'
+            },
+            {
+                lat: 43.0786, lng: 131.9624, color: '#10B981', badge: 'badge-shop', badgeText: 'Шоппинг',
+                title: 'ТК «Патрокл»', desc: 'Торговый комплекс с супермаркетом, аптекой, банкоматами и магазинами',
+                gis: 'https://2gis.ru/vladivostok/search/патрокл%20торговый'
+            },
+            {
+                lat: 43.076596, lng: 131.956134, color: '#3B82F6', badge: 'badge-nature', badgeText: 'Парк',
+                title: 'Парк у озера', desc: 'Зелёный парк с реликтовым озером для прогулок и отдыха — в 5 минутах пешком',
+                gis: 'https://2gis.ru/vladivostok/search/парк%20патрокл%20озеро'
+            },
+            {
+                lat: 43.0150, lng: 131.9100, color: '#3B82F6', badge: 'badge-nature', badgeText: 'Остров',
+                title: 'Остров Русский', desc: 'Живописный остров с пляжами, бухтами, кампусом ДВФУ и Приморским океанариумом',
+                gis: 'https://2gis.ru/vladivostok/search/остров%20русский'
+            },
+            {
+                lat: 43.0143, lng: 131.9303, color: '#8B5CF6', badge: 'badge-sight', badgeText: 'Океанариум',
+                title: 'Приморский океанариум', desc: 'Один из крупнейших океанариумов мира. Шоу дельфинов, тоннель с акулами',
+                gis: 'https://2gis.ru/vladivostok/search/приморский%20океанариум', phone: '+7-423-223-94-22'
+            },
+            {
+                lat: 43.0732, lng: 131.8431, color: '#8B5CF6', badge: 'badge-sight', badgeText: 'Маяк',
+                title: 'Токаревский маяк', desc: 'Знаменитый маяк на косе — символ Владивостока. Потрясающие закаты и фото',
+                gis: 'https://2gis.ru/vladivostok/search/токаревский%20маяк'
+            },
+            {
+                lat: 43.1095, lng: 131.8963, color: '#8B5CF6', badge: 'badge-sight', badgeText: 'Мост',
+                title: 'Золотой мост', desc: 'Вантовый мост через бухту Золотой Рог — визитная карточка города',
+                gis: 'https://2gis.ru/vladivostok/search/золотой%20мост'
+            },
+            {
+                lat: 43.1174, lng: 131.9002, color: '#8B5CF6', badge: 'badge-sight', badgeText: 'Смотровая',
+                title: 'Орлиное гнездо', desc: 'Лучшая видовая площадка Владивостока — панорама города, бухты и мостов',
+                gis: 'https://2gis.ru/vladivostok/search/орлиное%20гнездо%20видовая'
+            },
+            {
+                lat: 43.1131, lng: 131.9012, color: '#8B5CF6', badge: 'badge-sight', badgeText: 'Набережная',
+                title: 'Набережная Цесаревича', desc: 'Современная набережная с ресторанами, музеями и видом на Золотой Рог',
+                gis: 'https://2gis.ru/vladivostok/search/набережная%20цесаревича'
+            },
+            {
+                lat: 43.1453, lng: 132.0572, color: '#3B82F6', badge: 'badge-nature', badgeText: 'Пляж',
+                title: 'Стеклянная бухта', desc: 'Уникальный пляж с разноцветными стёклышками, отшлифованными морем',
+                gis: 'https://2gis.ru/vladivostok/search/стеклянная%20бухта'
+            },
+            {
+                lat: 43.0070, lng: 131.9130, color: '#3B82F6', badge: 'badge-nature', badgeText: 'Пляж',
+                title: 'Пляжи острова Русский', desc: 'Песчаные бухты с чистой водой: бухта Ахлёстышева, Новик, Воевода',
+                gis: 'https://2gis.ru/vladivostok/search/пляж%20русский%20остров'
+            },
+            {
+                lat: 43.1158, lng: 131.9008, color: '#8B5CF6', badge: 'badge-sight', badgeText: 'Фуникулёр',
+                title: 'Владивостокский фуникулёр', desc: 'Единственный фуникулёр на Дальнем Востоке — подъём к видовой площадке',
+                gis: 'https://2gis.ru/vladivostok/search/фуникулёр%20владивосток'
+            }
+        ];
+
+        places.forEach(function(p) {
+            var phoneLink = p.phone ? '<a href="tel:' + p.phone.replace(/[^+\d]/g, '') + '" class="popup-link-phone">☎ ' + p.phone + '</a>' : '';
+            var popup = '<div class="popup-card">'
+                + '<span class="popup-badge ' + p.badge + '">' + p.badgeText + '</span>'
+                + '<h4>' + p.title + '</h4>'
+                + '<p>' + p.desc + '</p>'
+                + '<div class="popup-links">'
+                + '<a href="' + p.gis + '" target="_blank" rel="noopener" class="popup-link-2gis">📍 Открыть в 2ГИС</a>'
+                + phoneLink
+                + '</div></div>';
+            L.marker([p.lat, p.lng], { icon: icon(p.color) }).addTo(map).bindPopup(popup, { maxWidth: 280 });
+        });
+
+        setTimeout(function(){ map.invalidateSize(); }, 300);
+    });
+    </script>
+
+    <!-- Footer -->
+    <footer class="bg-[#0A1929] text-white/50 py-16 md:py-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-16">
+                <div>
+                    <a href="index.html" class="flex items-center gap-3 mb-5">
+                        <div class="w-9 h-9 rounded-lg overflow-hidden"><img src="img/logo-apart-sea.jpg" alt="Apart Sea" class="w-full h-full object-cover rounded-lg"></div>
+                        <div class="flex flex-col"><span class="font-sans text-sm font-bold tracking-[0.2em] uppercase text-white leading-none">Apart Sea</span><span class="text-[9px] tracking-[0.3em] uppercase text-white/30 mt-0.5">Vladivostok</span></div>
+                    </a>
+                    <p class="text-sm leading-relaxed font-light">Посуточная аренда дизайнерских апартаментов в&nbsp;ЖК&nbsp;«Новые горизонты», Владивосток</p>
+                </div>
+                <div>
+                    <h4 class="text-white font-bold text-xs tracking-[0.2em] uppercase mb-5">Навигация</h4>
+                    <ul class="space-y-3 text-sm font-light"><li><a href="index.html" class="hover:text-white transition-colors duration-300">Главная</a></li><li><a href="apartment.html" class="hover:text-white transition-colors duration-300">Квартира</a></li><li><a href="location.html" class="hover:text-white transition-colors duration-300">Локация</a></li><li><a href="rules.html" class="hover:text-white transition-colors duration-300">Правила</a></li><li><a href="contact.html" class="hover:text-white transition-colors duration-300">Контакты</a></li></ul>
+                </div>
+                <div>
+                    <h4 class="text-white font-bold text-xs tracking-[0.2em] uppercase mb-5">Контакты</h4>
+                    <ul class="space-y-3 text-sm font-light"><li>ул. Сочинская, д. 10, Владивосток</li><li><a href="https://wa.me/79143214507" target="_blank" rel="noopener" class="hover:text-white transition-colors duration-300">WhatsApp: +7 914 321-45-07</a></li><li><a href="https://t.me/syvorova_t" target="_blank" rel="noopener" class="hover:text-white transition-colors duration-300">Telegram: @syvorova_t</a></li></ul>
+                </div>
+            </div>
+            <div class="border-t border-white/8 mt-14 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+                <p class="text-xs font-light">&copy; 2024–2026 Apart Sea. Все права защищены.</p>
+                <p class="text-xs font-light text-white/30">Дизайнерские апартаменты · Владивосток</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Sticky мобильная плашка -->
+    <div id="sticky-bar" class="fixed bottom-0 left-0 right-0 z-40 md:hidden bg-white/95 backdrop-blur-xl border-t border-sand/50 px-4 py-3 translate-y-0 transition-transform duration-500">
+        <div class="flex gap-3">
+            <a href="https://wa.me/79143214507?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5!%20%D0%A5%D0%BE%D1%87%D1%83%20%D1%83%D1%82%D0%BE%D1%87%D0%BD%D0%B8%D1%82%D1%8C%20%D1%81%D0%B2%D0%BE%D0%B1%D0%BE%D0%B4%D0%BD%D1%8B%D0%B5%20%D0%B4%D0%B0%D1%82%D1%8B" target="_blank" rel="noopener" class="flex-1 flex items-center justify-center gap-2 bg-[#25D366] text-white py-3.5 rounded-xl font-semibold text-sm min-h-[48px]">
+                <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+                WhatsApp
+            </a>
+            <a href="https://t.me/syvorova_t" target="_blank" rel="noopener" class="flex-1 flex items-center justify-center gap-2 bg-[#2AABEE] text-white py-3.5 rounded-xl font-semibold text-sm min-h-[48px]">
+                <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor"><path d="M11.944 0A12 12 0 000 12a12 12 0 0012 12 12 12 0 0012-12A12 12 0 0012 0h-.056zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 01.171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.479.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
+                Telegram
+            </a>
+        </div>
+    </div>
+
+    <script src="js/main.js"></script>
+</body>
+</html>

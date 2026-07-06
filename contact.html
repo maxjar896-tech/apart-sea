@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Контакты и бронирование | Apart Sea Владивосток</title>
+    <meta name="description" content="Забронируйте дизайнерские апартаменты во Владивостоке напрямую через WhatsApp или Telegram. Ответим за 15 минут.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&family=DM+Serif+Display&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        cream: '#F9F6F0', sand: '#EDE8DF', anthracite: '#2C3E50',
+                        ocean: '#1A365D', 'ocean-light': '#2A4A7F', 'ocean-soft': '#E8EDF4', warm: '#8B7355',
+                    },
+                    fontFamily: { sans: ['Montserrat', 'sans-serif'], serif: ['DM Serif Display', 'serif'] },
+                }
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="bg-cream text-anthracite font-sans antialiased overflow-x-hidden">
+
+    <!-- Навигация -->
+    <nav id="navbar" class="nav-inner fixed top-0 left-0 right-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-18 md:h-24">
+                <a href="index.html" class="flex items-center gap-3 group">
+                    <div class="w-10 h-10 md:w-11 md:h-11 rounded-xl overflow-hidden">
+                        <img src="img/logo-apart-sea.jpg" alt="Apart Sea" class="w-full h-full object-cover rounded-xl">
+                    </div>
+                    <div class="flex flex-col">
+                        <span class="font-sans text-sm md:text-base font-bold tracking-[0.2em] uppercase text-ocean nav-logo-text leading-none">Apart Sea</span>
+                        <span class="text-[9px] md:text-[10px] tracking-[0.3em] uppercase text-anthracite/40 font-medium mt-0.5">Vladivostok</span>
+                    </div>
+                </a>
+                <div class="hidden md:flex items-center gap-10">
+                    <a href="index.html" class="nav-link">Главная</a>
+                    <a href="apartment.html" class="nav-link">Квартира</a>
+                    <a href="location.html" class="nav-link">Локация</a>
+                    <a href="rules.html" class="nav-link">Правила</a>
+                    <a href="contact.html" class="nav-link active">Контакты</a>
+                    <a href="contact.html" class="hidden lg:inline-flex btn-book items-center gap-2 bg-ocean text-white px-6 py-2.5 rounded-xl text-xs font-semibold tracking-wider uppercase hover:bg-ocean-light transition-all duration-500">Забронировать</a>
+                </div>
+                <button id="menu-toggle" class="md:hidden p-2 rounded-lg" aria-label="Меню">
+                    <svg class="w-6 h-6 text-anthracite" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path id="menu-icon" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 6h16M4 12h16M4 18h16"/></svg>
+                </button>
+            </div>
+        </div>
+        <div id="mobile-menu" class="md:hidden hidden bg-cream/98 backdrop-blur-2xl border-t border-sand/50">
+            <div class="px-4 py-5 space-y-1">
+                <a href="index.html" class="block px-4 py-3.5 rounded-xl text-xs font-semibold tracking-wider uppercase text-anthracite hover:bg-sand/50 transition-colors">Главная</a>
+                <a href="apartment.html" class="block px-4 py-3.5 rounded-xl text-xs font-semibold tracking-wider uppercase text-anthracite hover:bg-sand/50 transition-colors">Квартира</a>
+                <a href="location.html" class="block px-4 py-3.5 rounded-xl text-xs font-semibold tracking-wider uppercase text-anthracite hover:bg-sand/50 transition-colors">Локация</a>
+                <a href="rules.html" class="block px-4 py-3.5 rounded-xl text-xs font-semibold tracking-wider uppercase text-anthracite hover:bg-sand/50 transition-colors">Правила</a>
+                <a href="contact.html" class="block px-4 py-3.5 rounded-xl text-xs font-semibold tracking-wider uppercase bg-ocean text-white">Контакты</a>
+                <a href="contact.html" class="block px-4 py-3.5 rounded-xl text-xs font-bold tracking-wider uppercase bg-ocean text-white text-center mt-3">Забронировать</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Заголовок -->
+    <section class="page-hero bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <p class="text-ocean text-xs font-bold tracking-[0.3em] uppercase mb-4 animate-fadeInUp">Прямое бронирование</p>
+            <h1 class="font-serif text-4xl md:text-5xl lg:text-6xl mb-5 animate-fadeInUp animation-delay-100">Контакты</h1>
+            <p class="text-anthracite/55 text-base md:text-lg max-w-2xl mx-auto font-light animate-fadeInUp animation-delay-200">Бронируйте напрямую — без&nbsp;комиссий и&nbsp;посредников. Отвечаем в&nbsp;течение 15&nbsp;минут</p>
+            <div class="separator-line mx-auto mt-6 animate-fadeInUp animation-delay-300"></div>
+        </div>
+    </section>
+
+    <!-- Кнопки мессенджеров -->
+    <section class="py-12 md:py-20 bg-white">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+
+            <div class="text-center mb-12">
+                <h2 class="font-serif text-2xl md:text-3xl font-semibold mb-3">Напишите нам в&nbsp;один клик</h2>
+                <p class="text-anthracite/60 text-base">Выберите удобный мессенджер — мы&nbsp;ответим моментально</p>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-6 mb-16">
+                <!-- WhatsApp -->
+                <a href="https://wa.me/79143214507?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5!%20%D0%A5%D0%BE%D1%87%D1%83%20%D1%83%D1%82%D0%BE%D1%87%D0%BD%D0%B8%D1%82%D1%8C%20%D1%81%D0%B2%D0%BE%D0%B1%D0%BE%D0%B4%D0%BD%D1%8B%D0%B5%20%D0%B4%D0%B0%D1%82%D1%8B%20%D0%B4%D0%BB%D1%8F%20%D0%B0%D1%80%D0%B5%D0%BD%D0%B4%D1%8B%20%D0%BA%D0%B2%D0%B0%D1%80%D1%82%D0%B8%D1%80%D1%8B%20%D0%B2%D0%BE%20%D0%92%D0%BB%D0%B0%D0%B4%D0%B8%D0%B2%D0%BE%D1%81%D1%82%D0%BE%D0%BA%D0%B5" target="_blank" rel="noopener" class="group bg-[#25D366]/5 hover:bg-[#25D366] border-2 border-[#25D366]/20 hover:border-[#25D366] rounded-2xl p-8 md:p-10 text-center transition-all duration-500">
+                    <div class="w-20 h-20 mx-auto rounded-2xl bg-[#25D366]/10 group-hover:bg-white/20 flex items-center justify-center mb-6 transition-colors duration-500">
+                        <svg class="w-10 h-10 text-[#25D366] group-hover:text-white transition-colors duration-500" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+                    </div>
+                    <h3 class="font-semibold text-xl mb-2 group-hover:text-white transition-colors duration-500">WhatsApp</h3>
+                    <p class="text-anthracite/60 group-hover:text-white/70 text-sm mb-4 transition-colors duration-500">Сообщение будет сформировано автоматически — просто нажмите «Отправить»</p>
+                    <span class="inline-flex items-center gap-2 text-[#25D366] group-hover:text-white font-semibold text-sm transition-colors duration-500">
+                        Написать
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+                    </span>
+                </a>
+
+                <!-- Telegram -->
+                <a href="https://t.me/syvorova_t" target="_blank" rel="noopener" class="group bg-[#2AABEE]/5 hover:bg-[#2AABEE] border-2 border-[#2AABEE]/20 hover:border-[#2AABEE] rounded-2xl p-8 md:p-10 text-center transition-all duration-500">
+                    <div class="w-20 h-20 mx-auto rounded-2xl bg-[#2AABEE]/10 group-hover:bg-white/20 flex items-center justify-center mb-6 transition-colors duration-500">
+                        <svg class="w-10 h-10 text-[#2AABEE] group-hover:text-white transition-colors duration-500" viewBox="0 0 24 24" fill="currentColor"><path d="M11.944 0A12 12 0 000 12a12 12 0 0012 12 12 12 0 0012-12A12 12 0 0012 0h-.056zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 01.171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.479.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
+                    </div>
+                    <h3 class="font-semibold text-xl mb-2 group-hover:text-white transition-colors duration-500">Telegram</h3>
+                    <p class="text-anthracite/60 group-hover:text-white/70 text-sm mb-4 transition-colors duration-500">Быстрый ответ и&nbsp;возможность отправить фото документов для&nbsp;бронирования</p>
+                    <span class="inline-flex items-center gap-2 text-[#2AABEE] group-hover:text-white font-semibold text-sm transition-colors duration-500">
+                        Написать
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+                    </span>
+                </a>
+            </div>
+
+            <!-- Разделитель -->
+            <div class="flex items-center gap-4 mb-16">
+                <div class="flex-1 h-px bg-sand"></div>
+                <span class="text-anthracite/40 text-sm font-medium">или оставьте заявку</span>
+                <div class="flex-1 h-px bg-sand"></div>
+            </div>
+
+            <!-- Форма заявки -->
+            <div class="max-w-xl mx-auto">
+                <div class="bg-white rounded-3xl p-6 md:p-10 border border-sand/50 shadow-sm">
+                    <div class="text-center mb-8">
+                        <h2 class="font-serif text-2xl md:text-3xl font-semibold mb-2">Заявка на&nbsp;бронирование</h2>
+                        <p class="text-anthracite/60 text-sm">Заполните форму — мы&nbsp;свяжемся с&nbsp;вами в&nbsp;WhatsApp в&nbsp;течение 15&nbsp;минут</p>
+                    </div>
+
+                    <form id="booking-form" class="space-y-5">
+                        <div>
+                            <label for="name" class="block text-sm font-medium mb-2">Ваше имя</label>
+                            <input type="text" id="name" name="name" required placeholder="Как к вам обращаться?" class="w-full px-4 py-3.5 rounded-xl border border-sand bg-cream/50 text-anthracite placeholder:text-anthracite/30 focus:outline-none focus:ring-2 focus:ring-ocean/30 focus:border-ocean transition-all duration-300 text-sm">
+                        </div>
+                        <div>
+                            <label for="phone" class="block text-sm font-medium mb-2">Телефон</label>
+                            <input type="tel" id="phone" name="phone" required placeholder="+7 (___) ___-__-__" class="w-full px-4 py-3.5 rounded-xl border border-sand bg-cream/50 text-anthracite placeholder:text-anthracite/30 focus:outline-none focus:ring-2 focus:ring-ocean/30 focus:border-ocean transition-all duration-300 text-sm">
+                        </div>
+                        <div class="grid grid-cols-2 gap-4">
+                            <div>
+                                <label for="checkin" class="block text-sm font-medium mb-2">Дата заезда</label>
+                                <input type="date" id="checkin" name="checkin" required class="w-full px-4 py-3.5 rounded-xl border border-sand bg-cream/50 text-anthracite focus:outline-none focus:ring-2 focus:ring-ocean/30 focus:border-ocean transition-all duration-300 text-sm">
+                            </div>
+                            <div>
+                                <label for="checkout" class="block text-sm font-medium mb-2">Дата выезда</label>
+                                <input type="date" id="checkout" name="checkout" required class="w-full px-4 py-3.5 rounded-xl border border-sand bg-cream/50 text-anthracite focus:outline-none focus:ring-2 focus:ring-ocean/30 focus:border-ocean transition-all duration-300 text-sm">
+                            </div>
+                        </div>
+                        <div>
+                            <label for="message" class="block text-sm font-medium mb-2">Комментарий <span class="text-anthracite/40 font-normal">(необязательно)</span></label>
+                            <textarea id="message" name="message" rows="3" placeholder="Количество гостей, пожелания..." class="w-full px-4 py-3.5 rounded-xl border border-sand bg-cream/50 text-anthracite placeholder:text-anthracite/30 focus:outline-none focus:ring-2 focus:ring-ocean/30 focus:border-ocean transition-all duration-300 text-sm resize-none"></textarea>
+                        </div>
+                        <button type="submit" class="w-full bg-ocean text-white py-4 rounded-xl font-semibold text-base hover:bg-ocean-light transition-all duration-300 shadow-lg hover:shadow-xl min-h-[56px]">
+                            Отправить заявку
+                        </button>
+                        <p class="text-center text-xs text-anthracite/40">Нажимая кнопку, вы&nbsp;соглашаетесь с&nbsp;обработкой персональных данных</p>
+                    </form>
+
+                    <!-- Успешная отправка -->
+                    <div id="form-success" class="hidden form-success text-center py-8">
+                        <div class="w-20 h-20 mx-auto rounded-full bg-green-100 flex items-center justify-center mb-6">
+                            <svg class="w-10 h-10 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                        </div>
+                        <h3 class="font-serif text-2xl font-semibold mb-3">Заявка отправлена!</h3>
+                        <p class="text-anthracite/70 text-base leading-relaxed max-w-sm mx-auto">Ваша заявка отправлена в&nbsp;WhatsApp. Мы&nbsp;ответим в&nbsp;течение <strong>15&nbsp;минут</strong></p>
+                        <div class="mt-6 flex justify-center gap-3">
+                            <a id="wa-link" href="https://wa.me/79143214507" target="_blank" rel="noopener" class="inline-flex items-center gap-2 bg-[#25D366] text-white px-6 py-3 rounded-xl text-sm font-semibold hover:bg-[#20BD5A] transition-colors">
+                                <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+                                Открыть WhatsApp
+                            </a>
+                            <a href="https://t.me/syvorova_t" target="_blank" rel="noopener" class="inline-flex items-center gap-2 bg-[#2AABEE] text-white px-6 py-3 rounded-xl text-sm font-semibold hover:bg-[#229ED9] transition-colors">
+                                <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor"><path d="M11.944 0A12 12 0 000 12a12 12 0 0012 12 12 12 0 0012-12A12 12 0 0012 0h-.056zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 01.171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.479.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
+                                Telegram
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Доп. информация -->
+    <section class="py-16 md:py-20">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-6">
+                <div class="text-center p-6">
+                    <div class="w-14 h-14 mx-auto rounded-xl bg-ocean/10 flex items-center justify-center mb-4">
+                        <svg class="w-7 h-7 text-ocean" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                    </div>
+                    <h3 class="font-semibold mb-2">Быстрый ответ</h3>
+                    <p class="text-anthracite/60 text-sm">Отвечаем в&nbsp;мессенджерах в&nbsp;среднем за&nbsp;10 минут, с&nbsp;8:00 до&nbsp;23:00</p>
+                </div>
+                <div class="text-center p-6">
+                    <div class="w-14 h-14 mx-auto rounded-xl bg-ocean/10 flex items-center justify-center mb-4">
+                        <svg class="w-7 h-7 text-ocean" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z"/></svg>
+                    </div>
+                    <h3 class="font-semibold mb-2">Без посредников</h3>
+                    <p class="text-anthracite/60 text-sm">Бронируйте напрямую у&nbsp;собственника — без&nbsp;комиссий сервисов</p>
+                </div>
+                <div class="text-center p-6">
+                    <div class="w-14 h-14 mx-auto rounded-xl bg-ocean/10 flex items-center justify-center mb-4">
+                        <svg class="w-7 h-7 text-ocean" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M2.25 8.25h19.5M2.25 9h19.5m-16.5 5.25h6m-6 2.25h3m-3.75 3h15a2.25 2.25 0 002.25-2.25V6.75A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25v10.5A2.25 2.25 0 004.5 19.5z"/></svg>
+                    </div>
+                    <h3 class="font-semibold mb-2">Удобная оплата</h3>
+                    <p class="text-anthracite/60 text-sm">Перевод на&nbsp;карту, СБП или наличными при&nbsp;заселении</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-[#0A1929] text-white/50 py-16 md:py-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-16">
+                <div>
+                    <a href="index.html" class="flex items-center gap-3 mb-5">
+                        <div class="w-9 h-9 rounded-lg overflow-hidden"><img src="img/logo-apart-sea.jpg" alt="Apart Sea" class="w-full h-full object-cover rounded-lg"></div>
+                        <div class="flex flex-col"><span class="font-sans text-sm font-bold tracking-[0.2em] uppercase text-white leading-none">Apart Sea</span><span class="text-[9px] tracking-[0.3em] uppercase text-white/30 mt-0.5">Vladivostok</span></div>
+                    </a>
+                    <p class="text-sm leading-relaxed font-light">Посуточная аренда дизайнерских апартаментов в&nbsp;ЖК&nbsp;«Новые горизонты», Владивосток</p>
+                </div>
+                <div>
+                    <h4 class="text-white font-bold text-xs tracking-[0.2em] uppercase mb-5">Навигация</h4>
+                    <ul class="space-y-3 text-sm font-light"><li><a href="index.html" class="hover:text-white transition-colors duration-300">Главная</a></li><li><a href="apartment.html" class="hover:text-white transition-colors duration-300">Квартира</a></li><li><a href="location.html" class="hover:text-white transition-colors duration-300">Локация</a></li><li><a href="rules.html" class="hover:text-white transition-colors duration-300">Правила</a></li><li><a href="contact.html" class="hover:text-white transition-colors duration-300">Контакты</a></li></ul>
+                </div>
+                <div>
+                    <h4 class="text-white font-bold text-xs tracking-[0.2em] uppercase mb-5">Контакты</h4>
+                    <ul class="space-y-3 text-sm font-light"><li>ул. Сочинская, д. 10, Владивосток</li><li><a href="https://wa.me/79143214507" target="_blank" rel="noopener" class="hover:text-white transition-colors duration-300">WhatsApp: +7 914 321-45-07</a></li><li><a href="https://t.me/syvorova_t" target="_blank" rel="noopener" class="hover:text-white transition-colors duration-300">Telegram: @syvorova_t</a></li></ul>
+                </div>
+            </div>
+            <div class="border-t border-white/8 mt-14 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+                <p class="text-xs font-light">&copy; 2024–2026 Apart Sea. Все права защищены.</p>
+                <p class="text-xs font-light text-white/30">Дизайнерские апартаменты · Владивосток</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Sticky мобильная плашка -->
+    <div id="sticky-bar" class="fixed bottom-0 left-0 right-0 z-40 md:hidden bg-white/95 backdrop-blur-xl border-t border-sand/50 px-4 py-3 translate-y-0 transition-transform duration-500">
+        <div class="flex gap-3">
+            <a href="https://wa.me/79143214507?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5!%20%D0%A5%D0%BE%D1%87%D1%83%20%D1%83%D1%82%D0%BE%D1%87%D0%BD%D0%B8%D1%82%D1%8C%20%D1%81%D0%B2%D0%BE%D0%B1%D0%BE%D0%B4%D0%BD%D1%8B%D0%B5%20%D0%B4%D0%B0%D1%82%D1%8B" target="_blank" rel="noopener" class="flex-1 flex items-center justify-center gap-2 bg-[#25D366] text-white py-3.5 rounded-xl font-semibold text-sm min-h-[48px]">
+                <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+                WhatsApp
+            </a>
+            <a href="https://t.me/syvorova_t" target="_blank" rel="noopener" class="flex-1 flex items-center justify-center gap-2 bg-[#2AABEE] text-white py-3.5 rounded-xl font-semibold text-sm min-h-[48px]">
+                <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor"><path d="M11.944 0A12 12 0 000 12a12 12 0 0012 12 12 12 0 0012-12A12 12 0 0012 0h-.056zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 01.171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.479.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
+                Telegram
+            </a>
+        </div>
+    </div>
+
+    <script src="js/main.js"></script>
+    <script>
+    document.getElementById('booking-form').addEventListener('submit', function(e) {
+        e.preventDefault();
+        var name = document.getElementById('name').value;
+        var phone = document.getElementById('phone').value;
+        var checkin = document.getElementById('checkin').value;
+        var checkout = document.getElementById('checkout').value;
+        var message = document.getElementById('message').value;
+        var text = 'Здравствуйте! Заявка на бронирование:\n'
+            + 'Имя: ' + name + '\n'
+            + 'Телефон: ' + phone + '\n'
+            + 'Заезд: ' + checkin + '\n'
+            + 'Выезд: ' + checkout;
+        if (message) text += '\nКомментарий: ' + message;
+        var waUrl = 'https://wa.me/79143214507?text=' + encodeURIComponent(text);
+        document.getElementById('wa-link').href = waUrl;
+        this.classList.add('hidden');
+        document.getElementById('form-success').classList.remove('hidden');
+        window.open(waUrl, '_blank');
+    });
+    </script>
+</body>
+</html>

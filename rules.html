@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Правила проживания и FAQ | Apart Sea Владивосток</title>
+    <meta name="description" content="Правила проживания, условия бронирования и ответы на частые вопросы — апартаменты Apart Sea во Владивостоке.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&family=DM+Serif+Display&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        cream: '#F9F6F0', sand: '#EDE8DF', anthracite: '#2C3E50',
+                        ocean: '#1A365D', 'ocean-light': '#2A4A7F', 'ocean-soft': '#E8EDF4', warm: '#8B7355',
+                    },
+                    fontFamily: { sans: ['Montserrat', 'sans-serif'], serif: ['DM Serif Display', 'serif'] },
+                }
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="bg-cream text-anthracite font-sans antialiased overflow-x-hidden">
+
+    <!-- Навигация -->
+    <nav id="navbar" class="nav-inner fixed top-0 left-0 right-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-18 md:h-24">
+                <a href="index.html" class="flex items-center gap-3 group">
+                    <div class="w-10 h-10 md:w-11 md:h-11 rounded-xl overflow-hidden">
+                        <img src="img/logo-apart-sea.jpg" alt="Apart Sea" class="w-full h-full object-cover rounded-xl">
+                    </div>
+                    <div class="flex flex-col">
+                        <span class="font-sans text-sm md:text-base font-bold tracking-[0.2em] uppercase text-ocean nav-logo-text leading-none">Apart Sea</span>
+                        <span class="text-[9px] md:text-[10px] tracking-[0.3em] uppercase text-anthracite/40 font-medium mt-0.5">Vladivostok</span>
+                    </div>
+                </a>
+                <div class="hidden md:flex items-center gap-10">
+                    <a href="index.html" class="nav-link">Главная</a>
+                    <a href="apartment.html" class="nav-link">Квартира</a>
+                    <a href="location.html" class="nav-link">Локация</a>
+                    <a href="rules.html" class="nav-link active">Правила</a>
+                    <a href="contact.html" class="nav-link">Контакты</a>
+                    <a href="contact.html" class="hidden lg:inline-flex btn-book items-center gap-2 bg-ocean text-white px-6 py-2.5 rounded-xl text-xs font-semibold tracking-wider uppercase hover:bg-ocean-light transition-all duration-500">Забронировать</a>
+                </div>
+                <button id="menu-toggle" class="md:hidden p-2 rounded-lg" aria-label="Меню">
+                    <svg class="w-6 h-6 text-anthracite" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path id="menu-icon" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 6h16M4 12h16M4 18h16"/></svg>
+                </button>
+            </div>
+        </div>
+        <div id="mobile-menu" class="md:hidden hidden bg-cream/98 backdrop-blur-2xl border-t border-sand/50">
+            <div class="px-4 py-5 space-y-1">
+                <a href="index.html" class="block px-4 py-3.5 rounded-xl text-xs font-semibold tracking-wider uppercase text-anthracite hover:bg-sand/50 transition-colors">Главная</a>
+                <a href="apartment.html" class="block px-4 py-3.5 rounded-xl text-xs font-semibold tracking-wider uppercase text-anthracite hover:bg-sand/50 transition-colors">Квартира</a>
+                <a href="location.html" class="block px-4 py-3.5 rounded-xl text-xs font-semibold tracking-wider uppercase text-anthracite hover:bg-sand/50 transition-colors">Локация</a>
+                <a href="rules.html" class="block px-4 py-3.5 rounded-xl text-xs font-semibold tracking-wider uppercase bg-ocean text-white">Правила</a>
+                <a href="contact.html" class="block px-4 py-3.5 rounded-xl text-xs font-semibold tracking-wider uppercase text-anthracite hover:bg-sand/50 transition-colors">Контакты</a>
+                <a href="contact.html" class="block px-4 py-3.5 rounded-xl text-xs font-bold tracking-wider uppercase bg-ocean text-white text-center mt-3">Забронировать</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Заголовок -->
+    <section class="page-hero bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <p class="text-ocean text-xs font-bold tracking-[0.3em] uppercase mb-4 animate-fadeInUp">Важная информация</p>
+            <h1 class="font-serif text-4xl md:text-5xl lg:text-6xl mb-5 animate-fadeInUp animation-delay-100">Правила проживания</h1>
+            <p class="text-anthracite/55 text-base md:text-lg max-w-2xl mx-auto font-light animate-fadeInUp animation-delay-200">Простые и&nbsp;понятные условия для&nbsp;комфортного пребывания. Мы&nbsp;ценим каждого гостя</p>
+            <div class="separator-line mx-auto mt-6 animate-fadeInUp animation-delay-300"></div>
+        </div>
+    </section>
+
+    <!-- Основные правила -->
+    <section class="py-12 md:py-20 bg-white">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-6 mb-16">
+                <!-- Заезд -->
+                <div class="bg-cream rounded-2xl p-6 md:p-8">
+                    <div class="w-12 h-12 rounded-xl bg-green-100 flex items-center justify-center mb-4">
+                        <svg class="w-6 h-6 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15.75 9V5.25A2.25 2.25 0 0013.5 3h-6a2.25 2.25 0 00-2.25 2.25v13.5A2.25 2.25 0 007.5 21h6a2.25 2.25 0 002.25-2.25V15m3 0l3-3m0 0l-3-3m3 3H9"/></svg>
+                    </div>
+                    <h3 class="font-semibold text-lg mb-2">Заезд (Check-in)</h3>
+                    <p class="text-3xl font-bold text-ocean mb-1">14:00</p>
+                    <p class="text-anthracite/60 text-sm">Бесконтактное заселение — код от&nbsp;замка на&nbsp;почтовом ящике с&nbsp;ключами приходит в&nbsp;мессенджер. Ранний заезд — по&nbsp;согласованию</p>
+                </div>
+
+                <!-- Выезд -->
+                <div class="bg-cream rounded-2xl p-6 md:p-8">
+                    <div class="w-12 h-12 rounded-xl bg-amber-100 flex items-center justify-center mb-4">
+                        <svg class="w-6 h-6 text-amber-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15.75 9V5.25A2.25 2.25 0 0013.5 3h-6a2.25 2.25 0 00-2.25 2.25v13.5A2.25 2.25 0 007.5 21h6a2.25 2.25 0 002.25-2.25V15M12 9l-3 3m0 0l3 3m-3-3h12.75"/></svg>
+                    </div>
+                    <h3 class="font-semibold text-lg mb-2">Выезд (Check-out)</h3>
+                    <p class="text-3xl font-bold text-ocean mb-1">12:00</p>
+                    <p class="text-anthracite/60 text-sm">Просто оставьте ключи в&nbsp;почтовом ящике и&nbsp;закройте дверь. Поздний выезд — по&nbsp;согласованию</p>
+                </div>
+
+                <!-- Залог -->
+                <div class="bg-cream rounded-2xl p-6 md:p-8">
+                    <div class="w-12 h-12 rounded-xl bg-blue-100 flex items-center justify-center mb-4">
+                        <svg class="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z"/></svg>
+                    </div>
+                    <h3 class="font-semibold text-lg mb-2">Страховой залог</h3>
+                    <p class="text-3xl font-bold text-ocean mb-1">5 000 ₽</p>
+                    <p class="text-anthracite/60 text-sm">Возвращается полностью в&nbsp;день выезда после осмотра квартиры. Переводом на&nbsp;карту в&nbsp;течение часа</p>
+                </div>
+
+                <!-- Отмена -->
+                <div class="bg-cream rounded-2xl p-6 md:p-8">
+                    <div class="w-12 h-12 rounded-xl bg-purple-100 flex items-center justify-center mb-4">
+                        <svg class="w-6 h-6 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 012.25-2.25h13.5A2.25 2.25 0 0121 7.5v11.25m-18 0A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75m-18 0v-7.5A2.25 2.25 0 015.25 9h13.5A2.25 2.25 0 0121 11.25v7.5"/></svg>
+                    </div>
+                    <h3 class="font-semibold text-lg mb-2">Отмена бронирования</h3>
+                    <p class="text-3xl font-bold text-ocean mb-1">Бесплатно</p>
+                    <p class="text-anthracite/60 text-sm">Бесплатная отмена за&nbsp;3&nbsp;суток до&nbsp;заезда. При отмене менее чем за&nbsp;3&nbsp;дня — оплата первых суток</p>
+                </div>
+            </div>
+
+            <!-- Правила дома -->
+            <div class="mb-16">
+                <h2 class="font-serif text-2xl md:text-3xl font-semibold mb-8 text-center">Правила дома</h2>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div class="flex items-start gap-4 bg-white rounded-xl p-5 border border-sand/50">
+                        <div class="w-10 h-10 rounded-lg bg-red-50 flex items-center justify-center flex-shrink-0">
+                            <svg class="w-5 h-5 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636"/></svg>
+                        </div>
+                        <div>
+                            <p class="font-semibold text-sm">Курение запрещено</p>
+                            <p class="text-anthracite/60 text-xs mt-1">В квартире и на балконе. Штраф за нарушение — 5 000 ₽</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start gap-4 bg-white rounded-xl p-5 border border-sand/50">
+                        <div class="w-10 h-10 rounded-lg bg-red-50 flex items-center justify-center flex-shrink-0">
+                            <svg class="w-5 h-5 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636"/></svg>
+                        </div>
+                        <div>
+                            <p class="font-semibold text-sm">Вечеринки запрещены</p>
+                            <p class="text-anthracite/60 text-xs mt-1">Тишина после 22:00. Уважайте соседей</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start gap-4 bg-white rounded-xl p-5 border border-sand/50">
+                        <div class="w-10 h-10 rounded-lg bg-amber-50 flex items-center justify-center flex-shrink-0">
+                            <svg class="w-5 h-5 text-amber-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126zM12 15.75h.007v.008H12v-.008z"/></svg>
+                        </div>
+                        <div>
+                            <p class="font-semibold text-sm">Без домашних животных</p>
+                            <p class="text-anthracite/60 text-xs mt-1">К сожалению, проживание с питомцами невозможно</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start gap-4 bg-white rounded-xl p-5 border border-sand/50">
+                        <div class="w-10 h-10 rounded-lg bg-green-50 flex items-center justify-center flex-shrink-0">
+                            <svg class="w-5 h-5 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                        </div>
+                        <div>
+                            <p class="font-semibold text-sm">Максимум 4 гостя</p>
+                            <p class="text-anthracite/60 text-xs mt-1">Комфортное размещение для 2–4 человек</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- FAQ Аккордеон -->
+            <div>
+                <h2 class="font-serif text-2xl md:text-3xl font-semibold mb-8 text-center">Частые вопросы</h2>
+
+                <div class="space-y-3">
+                    <!-- FAQ 1 -->
+                    <div class="accordion-item bg-white rounded-2xl border border-sand/50 overflow-hidden">
+                        <button class="accordion-trigger w-full flex items-center justify-between p-5 md:p-6 text-left">
+                            <span class="font-semibold text-sm md:text-base pr-4">Как происходит заселение?</span>
+                            <svg class="accordion-icon w-5 h-5 text-ocean flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                        </button>
+                        <div class="accordion-content px-5 md:px-6 pb-5 md:pb-6">
+                            <p class="text-anthracite/70 text-sm leading-relaxed">Заселение полностью бесконтактное. За 2 часа до заезда вы получаете в WhatsApp или Telegram код от кодового замка на почтовом ящике, где лежат ключи от квартиры, адрес с точными координатами и подробную инструкцию с фото. Просто приходите, забираете ключи и заселяетесь — никого ждать не нужно. При возникновении вопросов — мы на связи 24/7.</p>
+                        </div>
+                    </div>
+
+                    <!-- FAQ 2 -->
+                    <div class="accordion-item bg-white rounded-2xl border border-sand/50 overflow-hidden">
+                        <button class="accordion-trigger w-full flex items-center justify-between p-5 md:p-6 text-left">
+                            <span class="font-semibold text-sm md:text-base pr-4">Есть ли парковка?</span>
+                            <svg class="accordion-icon w-5 h-5 text-ocean flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                        </button>
+                        <div class="accordion-content px-5 md:px-6 pb-5 md:pb-6">
+                            <p class="text-anthracite/70 text-sm leading-relaxed">Да, возле дома есть бесплатная парковка во дворе. Обычно свободные места есть всегда. Также можно воспользоваться парковкой на прилегающей улице. Точное расположение парковки укажем в инструкции к заселению.</p>
+                        </div>
+                    </div>
+
+                    <!-- FAQ 3 -->
+                    <div class="accordion-item bg-white rounded-2xl border border-sand/50 overflow-hidden">
+                        <button class="accordion-trigger w-full flex items-center justify-between p-5 md:p-6 text-left">
+                            <span class="font-semibold text-sm md:text-base pr-4">Предоставляете ли вы отчётные документы?</span>
+                            <svg class="accordion-icon w-5 h-5 text-ocean flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                        </button>
+                        <div class="accordion-content px-5 md:px-6 pb-5 md:pb-6">
+                            <p class="text-anthracite/70 text-sm leading-relaxed">Да, мы предоставляем чеки и документы для отчётности перед работодателем. Если вам нужны документы для командировки — сообщите об этом заранее, и мы подготовим всё к вашему выезду.</p>
+                        </div>
+                    </div>
+
+                    <!-- FAQ 4 -->
+                    <div class="accordion-item bg-white rounded-2xl border border-sand/50 overflow-hidden">
+                        <button class="accordion-trigger w-full flex items-center justify-between p-5 md:p-6 text-left">
+                            <span class="font-semibold text-sm md:text-base pr-4">Можно ли заехать раньше или выехать позже?</span>
+                            <svg class="accordion-icon w-5 h-5 text-ocean flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                        </button>
+                        <div class="accordion-content px-5 md:px-6 pb-5 md:pb-6">
+                            <p class="text-anthracite/70 text-sm leading-relaxed">Ранний заезд (с 12:00) и поздний выезд (до 14:00) — бесплатно при наличии свободного окна. Если квартира свободна, с радостью пойдём навстречу. Просто напишите нам заранее в мессенджере.</p>
+                        </div>
+                    </div>
+
+                    <!-- FAQ 5 -->
+                    <div class="accordion-item bg-white rounded-2xl border border-sand/50 overflow-hidden">
+                        <button class="accordion-trigger w-full flex items-center justify-between p-5 md:p-6 text-left">
+                            <span class="font-semibold text-sm md:text-base pr-4">Как оплатить проживание?</span>
+                            <svg class="accordion-icon w-5 h-5 text-ocean flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                        </button>
+                        <div class="accordion-content px-5 md:px-6 pb-5 md:pb-6">
+                            <p class="text-anthracite/70 text-sm leading-relaxed">Принимаем оплату переводом на карту Сбербанк, Тинькофф или наличными. Предоплата — 50% для подтверждения бронирования, остаток — при заселении. Для длительного проживания (от 7 дней) — специальные условия.</p>
+                        </div>
+                    </div>
+
+                    <!-- FAQ 6 -->
+                    <div class="accordion-item bg-white rounded-2xl border border-sand/50 overflow-hidden">
+                        <button class="accordion-trigger w-full flex items-center justify-between p-5 md:p-6 text-left">
+                            <span class="font-semibold text-sm md:text-base pr-4">Что входит в стоимость проживания?</span>
+                            <svg class="accordion-icon w-5 h-5 text-ocean flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                        </button>
+                        <div class="accordion-content px-5 md:px-6 pb-5 md:pb-6">
+                            <p class="text-anthracite/70 text-sm leading-relaxed">В стоимость включено всё: постельное бельё и полотенца, средства гигиены, Wi-Fi, все коммунальные услуги, уборка перед заездом. Никаких скрытых платежей — цена, которую вы видите, является окончательной (+ возвращаемый залог).</p>
+                        </div>
+                    </div>
+
+                    <!-- FAQ 7 -->
+                    <div class="accordion-item bg-white rounded-2xl border border-sand/50 overflow-hidden">
+                        <button class="accordion-trigger w-full flex items-center justify-between p-5 md:p-6 text-left">
+                            <span class="font-semibold text-sm md:text-base pr-4">Есть ли скидки на длительное проживание?</span>
+                            <svg class="accordion-icon w-5 h-5 text-ocean flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                        </button>
+                        <div class="accordion-content px-5 md:px-6 pb-5 md:pb-6">
+                            <p class="text-anthracite/70 text-sm leading-relaxed">Да! При бронировании от 7 суток — скидка 10%, от 14 суток — 15%, от 30 суток — индивидуальная цена. Напишите нам, и мы подберём лучшие условия для вашего срока.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="section-dark py-20 md:py-28">
+        <div class="relative z-10 max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <p class="text-white/40 text-xs font-bold tracking-[0.3em] uppercase mb-6">Поддержка</p>
+            <h2 class="font-serif text-3xl md:text-4xl lg:text-5xl text-white mb-5">Остались вопросы?</h2>
+            <p class="text-white/50 text-base mb-10 font-light">Напишите нам — ответим в&nbsp;течение 15&nbsp;минут в&nbsp;любое время суток</p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <a href="https://wa.me/79143214507?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5!%20%D0%A3%20%D0%BC%D0%B5%D0%BD%D1%8F%20%D0%B5%D1%81%D1%82%D1%8C%20%D0%B2%D0%BE%D0%BF%D1%80%D0%BE%D1%81%20%D0%BF%D0%BE%20%D0%BA%D0%B2%D0%B0%D1%80%D1%82%D0%B8%D1%80%D0%B5%20%D0%B2%D0%BE%20%D0%92%D0%BB%D0%B0%D0%B4%D0%B8%D0%B2%D0%BE%D1%81%D1%82%D0%BE%D0%BA%D0%B5" target="_blank" rel="noopener" class="inline-flex items-center justify-center gap-3 bg-[#25D366] text-white px-8 py-4 rounded-xl text-base font-semibold hover:bg-[#20BD5A] transition-all duration-300 shadow-lg min-h-[56px]">
+                    <svg class="w-6 h-6" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+                    Написать в WhatsApp
+                </a>
+                <a href="contact.html" class="inline-flex items-center justify-center gap-2 border-2 border-white/30 text-white px-8 py-4 rounded-xl text-base font-medium hover:bg-white/10 transition-all duration-300 min-h-[56px]">
+                    Оставить заявку
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-[#0A1929] text-white/50 py-16 md:py-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-16">
+                <div>
+                    <a href="index.html" class="flex items-center gap-3 mb-5">
+                        <div class="w-9 h-9 rounded-lg overflow-hidden"><img src="img/logo-apart-sea.jpg" alt="Apart Sea" class="w-full h-full object-cover rounded-lg"></div>
+                        <div class="flex flex-col"><span class="font-sans text-sm font-bold tracking-[0.2em] uppercase text-white leading-none">Apart Sea</span><span class="text-[9px] tracking-[0.3em] uppercase text-white/30 mt-0.5">Vladivostok</span></div>
+                    </a>
+                    <p class="text-sm leading-relaxed font-light">Посуточная аренда дизайнерских апартаментов в&nbsp;ЖК&nbsp;«Новые горизонты», Владивосток</p>
+                </div>
+                <div>
+                    <h4 class="text-white font-bold text-xs tracking-[0.2em] uppercase mb-5">Навигация</h4>
+                    <ul class="space-y-3 text-sm font-light"><li><a href="index.html" class="hover:text-white transition-colors duration-300">Главная</a></li><li><a href="apartment.html" class="hover:text-white transition-colors duration-300">Квартира</a></li><li><a href="location.html" class="hover:text-white transition-colors duration-300">Локация</a></li><li><a href="rules.html" class="hover:text-white transition-colors duration-300">Правила</a></li><li><a href="contact.html" class="hover:text-white transition-colors duration-300">Контакты</a></li></ul>
+                </div>
+                <div>
+                    <h4 class="text-white font-bold text-xs tracking-[0.2em] uppercase mb-5">Контакты</h4>
+                    <ul class="space-y-3 text-sm font-light"><li>ул. Сочинская, д. 10, Владивосток</li><li><a href="https://wa.me/79143214507" target="_blank" rel="noopener" class="hover:text-white transition-colors duration-300">WhatsApp: +7 914 321-45-07</a></li><li><a href="https://t.me/syvorova_t" target="_blank" rel="noopener" class="hover:text-white transition-colors duration-300">Telegram: @syvorova_t</a></li></ul>
+                </div>
+            </div>
+            <div class="border-t border-white/8 mt-14 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+                <p class="text-xs font-light">&copy; 2024–2026 Apart Sea. Все права защищены.</p>
+                <p class="text-xs font-light text-white/30">Дизайнерские апартаменты · Владивосток</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Sticky мобильная плашка -->
+    <div id="sticky-bar" class="fixed bottom-0 left-0 right-0 z-40 md:hidden bg-white/95 backdrop-blur-xl border-t border-sand/50 px-4 py-3 translate-y-0 transition-transform duration-500">
+        <div class="flex gap-3">
+            <a href="https://wa.me/79143214507?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5!%20%D0%A5%D0%BE%D1%87%D1%83%20%D1%83%D1%82%D0%BE%D1%87%D0%BD%D0%B8%D1%82%D1%8C%20%D1%81%D0%B2%D0%BE%D0%B1%D0%BE%D0%B4%D0%BD%D1%8B%D0%B5%20%D0%B4%D0%B0%D1%82%D1%8B" target="_blank" rel="noopener" class="flex-1 flex items-center justify-center gap-2 bg-[#25D366] text-white py-3.5 rounded-xl font-semibold text-sm min-h-[48px]">
+                <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+                WhatsApp
+            </a>
+            <a href="https://t.me/syvorova_t" target="_blank" rel="noopener" class="flex-1 flex items-center justify-center gap-2 bg-[#2AABEE] text-white py-3.5 rounded-xl font-semibold text-sm min-h-[48px]">
+                <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor"><path d="M11.944 0A12 12 0 000 12a12 12 0 0012 12 12 12 0 0012-12A12 12 0 0012 0h-.056zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 01.171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.479.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
+                Telegram
+            </a>
+        </div>
+    </div>
+
+    <script src="js/main.js"></script>
+</body>
+</html>
