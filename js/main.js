@@ -232,6 +232,11 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    // --- Lazy loading for images below the fold ---
+    document.querySelectorAll('img:not(.hero-bg-img):not([loading])').forEach((img, i) => {
+        if (i > 1) img.loading = 'lazy';
+    });
+
     // --- Smooth anchor scrolling ---
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {

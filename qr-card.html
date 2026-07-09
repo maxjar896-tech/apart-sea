@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Визитка Apart Sea — QR-код для гостей</title>
+    <meta name="robots" content="noindex, nofollow">
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=DM+Serif+Display&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Montserrat', sans-serif; background: #f5f5f5; display: flex; align-items: center; justify-content: center; min-height: 100vh; padding: 20px; }
+
+        .card {
+            width: 90mm;
+            min-height: 50mm;
+            background: white;
+            border-radius: 16px;
+            padding: 28px 24px;
+            box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+            text-align: center;
+        }
+
+        .logo-row {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 16px;
+        }
+        .logo-icon {
+            width: 36px;
+            height: 36px;
+            background: #1A365D;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #F9F6F0;
+            font-family: 'DM Serif Display', serif;
+            font-size: 14px;
+            font-weight: bold;
+        }
+        .logo-text {
+            text-align: left;
+        }
+        .logo-text .name {
+            font-size: 14px;
+            font-weight: 700;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: #1A365D;
+        }
+        .logo-text .sub {
+            font-size: 8px;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: #999;
+        }
+
+        .divider {
+            width: 40px;
+            height: 2px;
+            background: linear-gradient(90deg, #1A365D, #2A4A7F);
+            border-radius: 2px;
+            margin: 0 auto 16px;
+        }
+
+        .qr-container {
+            margin: 0 auto 16px;
+            width: 140px;
+            height: 140px;
+        }
+        .qr-container svg { width: 100%; height: 100%; }
+
+        .tagline {
+            font-size: 11px;
+            color: #666;
+            line-height: 1.5;
+            margin-bottom: 14px;
+        }
+        .tagline strong {
+            color: #1A365D;
+            font-weight: 600;
+        }
+
+        .promo {
+            background: linear-gradient(135deg, #1A365D, #2A4A7F);
+            color: white;
+            border-radius: 10px;
+            padding: 10px 16px;
+            margin-bottom: 14px;
+        }
+        .promo .label { font-size: 8px; letter-spacing: 0.15em; text-transform: uppercase; opacity: 0.7; margin-bottom: 2px; }
+        .promo .value { font-size: 16px; font-weight: 700; letter-spacing: 0.05em; }
+
+        .contacts {
+            font-size: 10px;
+            color: #888;
+            line-height: 1.8;
+        }
+        .contacts a { color: #1A365D; text-decoration: none; font-weight: 500; }
+
+        .print-btn {
+            display: block;
+            margin: 24px auto 0;
+            padding: 12px 32px;
+            background: #1A365D;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            letter-spacing: 0.05em;
+        }
+        .print-btn:hover { background: #2A4A7F; }
+
+        @media print {
+            body { background: white; padding: 0; }
+            .card { box-shadow: none; border: 1px solid #eee; }
+            .print-btn { display: none; }
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <div class="card">
+            <div class="logo-row">
+                <div class="logo-icon">AS</div>
+                <div class="logo-text">
+                    <div class="name">Apart Sea</div>
+                    <div class="sub">Vladivostok</div>
+                </div>
+            </div>
+
+            <div class="divider"></div>
+
+            <div class="qr-container">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+                    <rect width="200" height="200" fill="white"/>
+                    <text x="100" y="90" text-anchor="middle" font-family="monospace" font-size="12" fill="#1A365D">[ QR-код ]</text>
+                    <text x="100" y="110" text-anchor="middle" font-family="monospace" font-size="9" fill="#888">Сгенерируйте на</text>
+                    <text x="100" y="125" text-anchor="middle" font-family="monospace" font-size="9" fill="#888">qr-code-generator.com</text>
+                    <rect x="10" y="10" width="180" height="180" fill="none" stroke="#ddd" stroke-width="2" rx="8"/>
+                </svg>
+            </div>
+
+            <p class="tagline">
+                Наведите камеру на QR-код<br>
+                и&nbsp;перейдите на&nbsp;сайт <strong>Apart Sea</strong>
+            </p>
+
+            <div class="promo">
+                <div class="label">Скидка при прямом бронировании</div>
+                <div class="value">−10%</div>
+            </div>
+
+            <div class="contacts">
+                WhatsApp: <a href="https://wa.me/79143214507">+7 914 321-45-07</a><br>
+                Telegram: <a href="https://t.me/syvorova_t">@syvorova_t</a><br>
+                ул. Сочинская, д. 10 · ЖК «Новые горизонты»
+            </div>
+        </div>
+
+        <button class="print-btn" onclick="window.print()">Распечатать визитку</button>
+    </div>
+</body>
+</html>

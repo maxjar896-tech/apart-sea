@@ -712,3 +712,38 @@ html {
 .tilt-card .tilt-content {
     transform: translateZ(30px);
 }
+
+/* ===== Floating WhatsApp button ===== */
+.wa-float {
+    position: fixed;
+    bottom: 28px;
+    right: 28px;
+    z-index: 900;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: #25D366;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 20px rgba(37,211,102,0.4);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+}
+.wa-float:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 28px rgba(37,211,102,0.5);
+}
+.wa-float svg {
+    width: 32px;
+    height: 32px;
+    fill: white;
+}
+@media (max-width: 767px) {
+    .wa-float { bottom: 20px; right: 20px; width: 56px; height: 56px; }
+    .wa-float svg { width: 28px; height: 28px; }
+}
+.has-sticky-bar .wa-float { bottom: 90px; }
+@media (max-width: 767px) {
+    .has-sticky-bar .wa-float { bottom: 80px; }
+}
