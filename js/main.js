@@ -180,8 +180,18 @@ document.addEventListener('DOMContentLoaded', () => {
     if (form && formSuccess) {
         form.addEventListener('submit', (e) => {
             e.preventDefault();
+            const name = document.getElementById('name').value;
+            const phone = document.getElementById('phone').value;
+            const checkin = document.getElementById('checkin').value;
+            const checkout = document.getElementById('checkout').value;
+            const message = document.getElementById('message').value;
+            const text = 'Заявка с сайта Apart Sea\n\nИмя: ' + name + '\nТелефон: ' + phone + '\nЗаезд: ' + checkin + '\nВыезд: ' + checkout + (message ? '\nКомментарий: ' + message : '');
+            const waUrl = 'https://wa.me/79143214507?text=' + encodeURIComponent(text);
+            const waLink = document.getElementById('wa-link');
+            if (waLink) waLink.href = waUrl;
             form.classList.add('hidden');
             formSuccess.classList.remove('hidden');
+            window.open(waUrl, '_blank');
         });
     }
 
