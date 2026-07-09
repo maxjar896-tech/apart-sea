@@ -195,6 +195,43 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    // --- Star rating ---
+    const starContainer = document.getElementById('star-rating');
+    const ratingInput = document.getElementById('review-rating');
+    if (starContainer && ratingInput) {
+        let currentRating = 0;
+        starContainer.querySelectorAll('.star-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                currentRating = parseInt(btn.dataset.star);
+                ratingInput.value = currentRating;
+                starContainer.querySelectorAll('.star-btn svg').forEach((svg, i) => {
+                    svg.classList.toggle('text-amber-400', i < currentRating);
+                    svg.classList.toggle('text-sand', i >= currentRating);
+                });
+            });
+        });
+    }
+
+    // --- Review form ---
+    const reviewForm = document.getElementById('review-form');
+    const reviewSuccess = document.getElementById('review-success');
+    if (reviewForm && reviewSuccess) {
+        reviewForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const rating = document.getElementById('review-rating').value;
+            if (rating === '0') { alert('Пожалуйста, поставьте оценку'); return; }
+            const name = document.getElementById('review-name').value;
+            const city = document.getElementById('review-city').value;
+            const text = document.getElementById('review-text').value;
+            const stars = '⭐'.repeat(parseInt(rating));
+            const msg = 'Новый отзыв с сайта Apart Sea\n\n' + stars + ' (' + rating + '/5)\nИмя: ' + name + '\nГород: ' + city + '\n\nОтзыв: ' + text;
+            const waUrl = 'https://wa.me/79143214507?text=' + encodeURIComponent(msg);
+            reviewForm.classList.add('hidden');
+            reviewSuccess.classList.remove('hidden');
+            window.open(waUrl, '_blank');
+        });
+    }
+
     // --- Smooth anchor scrolling ---
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
